@@ -6,7 +6,7 @@ const svg = canvas.append('svg')
   .attr('height', 600);
 
 // append the SVG elements to the SVG container
-const rect = svg.append('rect')
+svg.append('rect')
   .attr('width', 200)
   .attr('height', 100)
   .attr('fill', 'blue')
