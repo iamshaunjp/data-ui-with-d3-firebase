@@ -6,7 +6,7 @@ const svg = canvas.append('svg')
   .attr('height', 600);
 
 // append the SVG elements to the SVG container
-svg.append('rect')
+const rect = svg.append('rect')
   .attr('width', 200)
   .attr('height', 100)
   .attr('fill', 'blue')
@@ -25,3 +25,10 @@ svg.append('line')
   .attr('y1', 20)
   .attr('y2', 120)
   .attr('stroke', 'red');
+
+svg.append('text')
+  .attr('x', 20)
+  .attr('y', 200)
+  .attr('fill', 'grey')
+  .text('hello, ninjas')
+  .style('font-family', 'arial')
