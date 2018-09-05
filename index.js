@@ -4,8 +4,8 @@ const data = [
 
 d3.select('rect')
   .data(data)
-  .attr('width', function(d,i,n){ return d.width })
-  .attr('height', function(d,i,n){ return d.height })
-  .attr('fill', function(d,i,n){ return d.fill });
+  .attr('width', (d,i,n) => d.width)
+  .attr('height', (d,i,n) => d.height)
+  .attr('fill', (d,i,n) => d.fill);
 
 
