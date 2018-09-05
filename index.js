@@ -5,21 +5,25 @@ const svg = canvas.append('svg')
   .attr('width', 600)
   .attr('height', 600);
 
+// create a group
+const group = svg.append('g')
+  .attr('transform', 'translate(0, 100)');
+
 // append the SVG elements to the SVG container
-const rect = svg.append('rect')
+group.append('rect')
   .attr('width', 200)
   .attr('height', 100)
   .attr('fill', 'blue')
   .attr('x', 20)
   .attr('y', 20);
 
-svg.append('circle')
+group.append('circle')
   .attr('r', 50)
   .attr('cx', 300)
   .attr('cy', 70)
   .attr('fill', 'pink');
 
-svg.append('line')
+group.append('line')
   .attr('x1', 370)
   .attr('x2', 400)
   .attr('y1', 20)
@@ -32,3 +36,4 @@ svg.append('text')
   .attr('fill', 'grey')
   .text('hello, ninjas')
   .style('font-family', 'arial')
+  .attr('transform', 'translate(0, -100)');
