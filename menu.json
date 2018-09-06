@@ -12,6 +12,10 @@
     "orders": 300
   },
   {
+    "name": "veg burger",
+    "orders": 700
+  },
+  {
     "name": "veg surprise",
     "orders": 900
   }
