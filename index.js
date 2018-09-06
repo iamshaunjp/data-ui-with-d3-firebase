@@ -4,7 +4,7 @@ const svg = d3.select('svg');
 d3.json('menu.json').then(data => {
 
   const y = d3.scaleLinear()
-    .domain([0, 1000])
+    .domain([0, d3.max(data, d => d.orders)])
     .range([0, 500]);
 
   const x = d3.scaleBand()
@@ -13,8 +13,11 @@ d3.json('menu.json').then(data => {
     .paddingInner(0.2)
     .paddingOuter(0.2);
 
-  console.log(x('veg burger'));
-  console.log(x('veg curry'));
+  // const min = d3.min(data, d => d.orders);
+  // const max = d3.max(data, d => d.orders);
+  // const extent = d3.extent(data, d => d.orders);
+
+  // console.log(min, max, extent);
 
   // join the data to circs
   const rects = svg.selectAll('rect')
