@@ -1,24 +1,25 @@
-const data = [
-  {width: 200, height: 100, fill: 'purple'},
-  {width: 100, height: 60, fill: 'pink'},
-  {width: 50, height: 30, fill: 'red'}
-];
+d3.json('planets.json').then(data => {
 
-// select the svg conatiner first
-const svg = d3.select('svg');
+  // select the svg conatiner first
+  const svg = d3.select('svg');
 
-// join the data to rects
-const rects = svg.selectAll('rect')
-  .data(data);
+  // join the data to circs
+  const circs = svg.selectAll('circle')
+    .data(data);
 
-// add attrs to rects already in the DOM
-rects.attr('width', (d,i,n) => d.width)
-  .attr('height', (d,i,n) => d.height)
-  .attr('fill', (d,i,n) => d.fill);
+  // add attrs to circs already in the DOM
+  circs.attr('cy', 200)
+    .attr('cx', d => d.distance)
+    .attr('r', d => d.radius)
+    .attr('fill', d => d.fill);
 
-// append the enter selection to the DOM
-const added = rects.enter()
-  .append('rect')
-    .attr('width', (d,i,n) => d.width)
-    .attr('height', (d,i,n) => d.height)
-    .attr('fill', (d,i,n) => d.fill);
+  // append the enter selection to the DOM
+  circs.enter()
+    .append('circle')
+      .attr('cy', 200)
+      .attr('cx', d => d.distance)
+      .attr('r', d => d.radius)
+      .attr('fill', d => d.fill);
+
+});
+

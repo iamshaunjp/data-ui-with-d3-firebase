@@ -1,0 +1,22 @@
+[
+  {
+    "radius": 50,
+    "distance": 110,
+    "fill": "orange"
+  },
+  {
+    "radius": 70,
+    "distance": 260,
+    "fill": "red"
+  },
+  {
+    "radius": 35,
+    "distance": 400,
+    "fill": "brown"
+  },
+  {
+    "radius": 55,
+    "distance": 530,
+    "fill": "green"
+  }
+]
