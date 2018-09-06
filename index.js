@@ -1,7 +1,7 @@
-d3.json('planets.json').then(data => {
+// select the svg conatiner first
+const svg = d3.select('svg');
 
-  // select the svg conatiner first
-  const svg = d3.select('svg');
+d3.json('planets.json').then(data => {
 
   // join the data to circs
   const circs = svg.selectAll('circle')
