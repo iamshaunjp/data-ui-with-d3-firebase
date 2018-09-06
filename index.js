@@ -4,12 +4,21 @@ const data = [
   {width: 50, height: 30, fill: 'red'}
 ];
 
-// console.log(d3.selectAll('rect').data(data))
+// select the svg conatiner first
+const svg = d3.select('svg');
 
-d3.selectAll('rect') 
-  .data(data)
-  .attr('width', (d,i,n) => d.width)
+// join the data to rects
+const rects = svg.selectAll('rect')
+  .data(data);
+
+// add attrs to rects already in the DOM
+rects.attr('width', (d,i,n) => d.width)
   .attr('height', (d,i,n) => d.height)
   .attr('fill', (d,i,n) => d.fill);
 
-
+// append the enter selection to the DOM
+const added = rects.enter()
+  .append('rect')
+    .attr('width', (d,i,n) => d.width)
+    .attr('height', (d,i,n) => d.height)
+    .attr('fill', (d,i,n) => d.fill);
