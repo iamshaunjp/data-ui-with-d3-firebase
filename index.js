@@ -4,9 +4,11 @@ const data = [
   {width: 50, height: 30, fill: 'red'}
 ];
 
-// console.log(d3.selectAll('rect').data(data))
+// select the svg container first
+const svg = d3.select('svg');
 
-d3.selectAll('rect') 
+// console.log(d3.selectAll('rect').data(data))
+svg.selectAll('rect') 
   .data(data)
   .attr('width', (d,i,n) => d.width)
   .attr('height', (d,i,n) => d.height)
