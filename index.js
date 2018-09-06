@@ -12,13 +12,13 @@ const rects = svg.selectAll('rect')
   .data(data);
 
 // add attrs to rects already in the DOM
-rects.attr('width', (d,i,n) => d.width)
-  .attr('height', (d,i,n) => d.height)
-  .attr('fill', (d,i,n) => d.fill);
+rects.attr('width', d => d.width)
+  .attr('height', d => d.height)
+  .attr('fill', d => d.fill);
 
 // append the enter selection to the DOM
 const added = rects.enter()
   .append('rect')
-    .attr('width', (d,i,n) => d.width)
-    .attr('height', (d,i,n) => d.height)
-    .attr('fill', (d,i,n) => d.fill);
+    .attr('width', d => d.width)
+    .attr('height', d => d.height)
+    .attr('fill', d => d.fill);
