@@ -14,6 +14,14 @@ const graph = svg.append('g')
   .attr('height', graphHeight)
   .attr('transform', `translate(${margin.left}, ${margin.top})`);
 
+// add dummy rects to see exit selection
+graph.append('rect');
+graph.append('rect');
+graph.append('rect');
+graph.append('rect');
+graph.append('rect');
+graph.append('rect');
+
 // create axes groups
 const xAxisGroup = graph.append('g')
   .attr('transform', `translate(0, ${graphHeight})`)
@@ -40,6 +48,9 @@ db.collection('dishes').get().then(res => {
   // join the data to circs
   const rects = graph.selectAll('rect')
     .data(data);
+
+  console.log(rects)
+  rects.exit().remove();
 
   // add attrs to circs already in the DOM
   rects.attr('width', x.bandwidth)
