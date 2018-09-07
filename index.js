@@ -24,7 +24,7 @@ d3.json('menu.json').then(data => {
 
   const y = d3.scaleLinear()
     .domain([0, d3.max(data, d => d.orders)])
-    .range([0, graphHeight]);
+    .range([graphHeight, 0]);
 
   const x = d3.scaleBand()
     .domain(data.map(item => item.name))
@@ -38,17 +38,19 @@ d3.json('menu.json').then(data => {
 
   // add attrs to circs already in the DOM
   rects.attr('width', x.bandwidth)
-    .attr("height", d => y(d.orders))
+    .attr("height", d => graphHeight - y(d.orders))
     .attr('fill', 'orange')
-    .attr('x', d => x(d.name));
+    .attr('x', d => x(d.name))
+    .attr('y', d => y(d.orders));
 
   // append the enter selection to the DOM
   rects.enter()
     .append('rect')
       .attr('width', x.bandwidth)
-      .attr("height", d => y(d.orders))
+      .attr("height", d => graphHeight - y(d.orders))
       .attr('fill', 'orange')
-      .attr('x', (d) => x(d.name));
+      .attr('x', (d) => x(d.name))
+      .attr('y', d => y(d.orders));
 
   // create & call axes
   const xAxis = d3.axisBottom(x);
