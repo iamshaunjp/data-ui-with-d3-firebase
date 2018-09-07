@@ -52,12 +52,19 @@ d3.json('menu.json').then(data => {
       .attr('x', (d) => x(d.name))
       .attr('y', d => y(d.orders));
 
-  // create & call axes
+  // create & call axesit
   const xAxis = d3.axisBottom(x);
-  const yAxis = d3.axisLeft(y);
+  const yAxis = d3.axisLeft(y)
+    .ticks(3)
+    .tickFormat(d => d + ' orders');
 
   xAxisGroup.call(xAxis);
   yAxisGroup.call(yAxis);
+
+  xAxisGroup.selectAll('text')
+    .attr('fill', 'orange')
+    .attr('transform', 'rotate(-40)')
+    .attr('text-anchor', 'end')
 
 });
 
