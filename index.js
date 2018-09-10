@@ -39,14 +39,14 @@ const yAxis = d3.axisLeft(y)
   .ticks(3)
   .tickFormat(d => d + ' orders');
 
+const t = d3.transition().duration(500);
+
 // the update function
 const update = (data) => {
 
   // join the data to circs
   const rects = graph.selectAll('rect')
     .data(data);
-
-  console.log(rects);
 
   // remove unwanted rects
   rects.exit().remove();
@@ -59,9 +59,9 @@ const update = (data) => {
   rects.attr('width', x.bandwidth)
     .attr('fill', 'orange')
     .attr('x', d => x(d.name))
-    .transition().duration(500)
-      .attr("height", d => graphHeight - y(d.orders))
-      .attr('y', d => y(d.orders));
+    // .transition(t)
+    //   .attr("height", d => graphHeight - y(d.orders))
+    //   .attr('y', d => y(d.orders));
 
   // append the enter selection to the DOM
   rects.enter()
@@ -71,7 +71,8 @@ const update = (data) => {
       .attr('fill', 'orange')
       .attr('x', (d) => x(d.name))
       .attr('y', d => graphHeight)
-      .transition().duration(500)
+      .merge(rects)
+      .transition(t)
         .attr("height", d => graphHeight - y(d.orders))
         .attr('y', d => y(d.orders));
 
