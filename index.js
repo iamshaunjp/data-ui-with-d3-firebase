@@ -80,6 +80,8 @@ var data = [];
 
 db.collection('dishes').onSnapshot(res => {
   
+  console.log(res.docChanges())
+
   res.docChanges().forEach(change => {
 
     const doc = {...change.doc.data(), id: change.doc.id};
