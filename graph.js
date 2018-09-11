@@ -27,17 +27,16 @@ const update = (data) => {
 
   // update colour scale domain
   colour.domain(data.map(d => d.name));
-
-  // handle the exit selection 
-
-  // handle the current DOM path updates
   
   // join enhanced (pie) data to path elements
   const paths = graph.selectAll('path')
     .data(pie(data));
 
-  console.log(paths);
+  // handle the exit selection 
 
+  // handle the current DOM path updates
+
+  
   paths.enter()
     .append('path')
       .attr('class', 'arc')
