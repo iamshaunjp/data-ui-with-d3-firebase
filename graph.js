@@ -12,6 +12,7 @@ const graph = svg.append('g')
   // translates the graph group to the middle of the svg container
 
 const pie = d3.pie()
+  .sort(null)
   .value(d => d.cost);
   // the value we are evaluating to create the pie angles
 
