@@ -19,8 +19,14 @@ const arcPath = d3.arc()
   .outerRadius(dims.radius)
   .innerRadius(dims.radius / 2);
 
+// ordianl colour scale
+const colour = d3.scaleOrdinal(d3["schemeSet3"]);
+
 // update function
 const update = (data) => {
+
+  // update colour scale domain
+  colour.domain(data.map(d => d.name));
   
   // join enhanced (pie) data to path elements
   const paths = graph.selectAll('path')
@@ -33,7 +39,8 @@ const update = (data) => {
       .attr('class', 'arc')
       .attr('d', arcPath)
       .attr('stroke', '#fff')
-      .attr('stroke-width', 3);
+      .attr('stroke-width', 3)
+      .attr('fill', d => colour(d.data.name));
 
 };
 
