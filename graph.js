@@ -21,5 +21,10 @@ const angles = pie([
   { name: 'gaming', cost: 200 }
 ]);
 
-console.log(angles);
+const arcPath = d3.arc()
+  .outerRadius(dims.radius)
+  .innerRadius(dims.radius / 2);
+
+console.log(arcPath(angles[0]));
+
 
