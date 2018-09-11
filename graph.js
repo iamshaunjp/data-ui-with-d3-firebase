@@ -12,6 +12,7 @@ const graph = svg.append('g')
   // translates the graph group to the middle of the svg container
 
 const pie = d3.pie()
+  .sort(null)
   .value(d => d.cost);
   // the value we are evaluating to create the pie angles
 
@@ -39,15 +40,17 @@ const update = (data) => {
     .remove();
 
   // handle the current DOM path updates
-  paths.attr('d', arcPath);
+  paths.transition().duration(750)
+    .attrTween("d", arcTweenUpdate);
 
   paths.enter()
     .append('path')
       .attr('class', 'arc')
-      //.attr('d', arcPath)
       .attr('stroke', '#fff')
       .attr('stroke-width', 3)
+      .attr('d', arcPath)
       .attr('fill', d => colour(d.data.name))
+      .each((d,i,n) => n[i]._current = d )
       .transition().duration(750).attrTween("d", arcTweenEnter);
 
 };
@@ -99,4 +102,13 @@ const arcTweenExit = (d) => {
     d.startAngle = i(t);
     return arcPath(d);
   };
-}
+};
+
+function arcTweenUpdate(d) {
+  var i = d3.interpolate(this._current, d);
+  this._current = i(1);
+
+  return function(t) {
+    return arcPath(i(t));
+  };
+};
