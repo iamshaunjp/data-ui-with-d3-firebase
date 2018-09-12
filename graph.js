@@ -66,6 +66,11 @@ const update = (data) => {
       .each(function(d){ this._current = d })
       .transition().duration(750).attrTween("d", arcTweenEnter);
 
+  // add events
+  graph.selectAll('path')
+    .on('mouseover', handleMouseOver)
+    .on('mouseout', handleMouseOut);
+
 };
 
 // data array and firestore
@@ -119,7 +124,6 @@ const arcTweenExit = (d) => {
 
 // use function keyword to allow use of 'this'
 function arcTweenUpdate(d) {
-  console.log(this._current, d);
   // interpolate between the two objects
   var i = d3.interpolate(this._current, d);
   // update the current prop with new updated data
@@ -129,4 +133,19 @@ function arcTweenUpdate(d) {
     // i(t) returns a value of d (data object) which we pass to arcPath
     return arcPath(i(t));
   };
+};
+
+// event handlers
+const handleMouseOver = (d,i,n) => {
+  //console.log(n[i]);
+  d3.select(n[i])
+    .transition().duration(300)
+      .attr('fill', '#fff');
+};
+
+const handleMouseOut = (d,i,n) => {
+  //console.log(n[i]);
+  d3.select(n[i])
+    .transition().duration(300)
+      .attr('fill', colour(d.data.name));
 };
