@@ -1,6 +1,6 @@
-const margin = { top: 40, right: 20, bottom: 50, left: 100 };
+const margin = { top: 20, right: 20, bottom: 50, left: 100 };
 const graphWidth = 560 - margin.right - margin.left;
-const graphHeight = 400 - margin.top - margin.bottom;
+const graphHeight = 360 - margin.top - margin.bottom;
 
 const svg = d3.select('.canvas')
   .append('svg')
@@ -12,10 +12,23 @@ const graph = svg.append('g')
   .attr('height', graphHeight)
   .attr('transform', `translate(${margin.left}, ${margin.top})`);
 
+// scales
+const x = d3.scaleTime().range([0, graphWidth]);
+const y = d3.scaleLinear().range([graphHeight, 0]);
+
+// axes groups
+const xAxisGroup = graph.append('g')
+  .attr('class', 'x-axis')
+  .attr('transform', "translate(0," + graphHeight + ")");
+
+const yAxisGroup = graph.append('g')
+  .attr('class', 'y-axis');
+
+
+
 // update function
 const update = (data) => {
 
-  console.log(data);
 
 };
 
