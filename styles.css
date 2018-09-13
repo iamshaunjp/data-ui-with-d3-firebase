@@ -1,17 +1,19 @@
 .nav{
   background: #333
 }
-.card{
+button{
+  background: #333 !important;
   margin-bottom: 20px;
+  width: 100%;
+  padding: 16px;
+  font-size: 1.6em;
+  color: #fff;
+  border: 0;
   border-radius: 4px;
   cursor: pointer;
-  background: #333;
 }
-.card.active{
+button.active{
   background: #00bfa5 !important;
-}
-.card.active .card-title{
-  color: #fff !important;
 }
 form span{
   color: #00bfa5 !important;
