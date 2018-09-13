@@ -34,13 +34,20 @@ const update = (data) => {
   // create axes
   const xAxis = d3.axisBottom(x)
     .ticks(4)
+    .tickFormat(d3.timeFormat("%b %d"));
     
   const yAxis = d3.axisLeft(y)
     .ticks(4)
+    .tickFormat(d => d + 'km');
 
   // call axes
   xAxisGroup.call(xAxis);
   yAxisGroup.call(yAxis);
+
+  // rotate axis text
+  xAxisGroup.selectAll('text')
+    .attr('transform', 'rotate(-40)')
+    .attr('text-anchor', 'end');
 
 };
 
