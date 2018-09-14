@@ -33,6 +33,13 @@ const line = d3.line()
 // line path element
 const path = graph.append('path');
 
+// create dotted line group and append to graph
+
+// create x dotted line and append to dotted line group
+
+// create y dotted line and append to dotted line group
+
+
 // update function
 const update = (data) => {
 
@@ -80,12 +87,16 @@ const update = (data) => {
         .transition().duration(100)
         .attr('r', 8)
         .attr('fill', '#fff');
+      // set x dotted line coords (x1,x2,y1,y2)
+      // set y dotted line coords (x1,x2,y1,y2)
+      // show the dotted line group (opacity)
     })
     .on('mouseleave', (d,i,n) => {
       d3.select(n[i])
         .transition().duration(100)
         .attr('r', 4)
         .attr('fill', '#fff');
+      // hide the dotted line group (opacity)
     });
 
   // create axes
