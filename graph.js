@@ -40,7 +40,7 @@ const update = (data) => {
     
   const yAxis = d3.axisLeft(y)
     .ticks(4)
-    .tickFormat(d => d + 'km');
+    .tickFormat(d => d + 'm');
 
   // call axes
   xAxisGroup.call(xAxis);
