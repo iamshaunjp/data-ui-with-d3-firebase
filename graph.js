@@ -31,6 +31,8 @@ const update = (data) => {
   x.domain(d3.extent(data, d => new Date(d.date)));
   y.domain([0, d3.max(data, d =>  d.distance)]);
 
+  console.log(x(new Date(data[0].date)))
+
   // create axes
   const xAxis = d3.axisBottom(x)
     .ticks(4)
