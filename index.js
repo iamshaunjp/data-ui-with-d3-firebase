@@ -41,10 +41,40 @@ const pack = d3.pack()
   .size([960, 700])
   .padding(5);
 
-// console.log(pack(rootNode));
-// console.log(pack(rootNode).descendants());
-
 const bubbleData = pack(rootNode).descendants();
+
+// create an ordinal scale
+const colour = d3.scaleOrdinal(['#d1c4e9', '#b39ddb', '#9575cd']);
+
+// join data and add group for each node
+const nodes = graph.selectAll('g')
+  .data(bubbleData)
+  .enter()
+  .append('g')
+  .attr('transform', d => `translate(${d.x}, ${d.y})`);
+  // returns an array of nodes entered into the DOM (groups)
+
+//console.log(nodes)
+
+// add circle to each group
+nodes.append('circle')
+  .attr('r', d => d.r)
+  .attr('stroke', 'white')
+  .attr('stroke-width', 2)
+  .attr('fill', d => colour(d.depth));
+
+// add text to each group
+nodes.filter(d => !d.children)
+  .append('text')
+    .attr('text-anchor', 'middle')
+    .attr('dy','0.3em')
+    .attr('fill', 'white')
+    .style('font-size', d => (d.value * 5))
+    .text(d => d.data.name);
+      
+
+
+
 
 
 
