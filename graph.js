@@ -31,7 +31,26 @@ const update = (data) => {
   x.domain(d3.extent(data, d => new Date(d.date)));
   y.domain([0, d3.max(data, d =>  d.distance)]);
 
-  console.log(x(new Date(data[0].date)))
+  // create circles for points
+  const circles = graph.selectAll('circle')
+    .data(data);
+
+  // remove unwanted points
+  circles.exit().remove();
+
+  // update current points
+  circles.attr('r', '5')
+    .attr('cx', d => x(new Date(d.date)))
+    .attr('cy', d => y(d.distance))
+    .attr('fill', '#ccc');
+
+  // add new points
+  circles.enter()
+    .append('circle')
+      .attr('r', '4')
+      .attr('cx', d => x(new Date(d.date)))
+      .attr('cy', d => y(d.distance))
+      .attr('fill', '#ccc');
 
   // create axes
   const xAxis = d3.axisBottom(x)
