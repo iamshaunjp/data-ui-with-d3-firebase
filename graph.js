@@ -27,6 +27,9 @@ const yAxisGroup = graph.append('g')
 // update function
 const update = (data) => {
 
+  // filter data based on current activity
+  data = data.filter(item => item.activity == activity);
+
   // set scale domains
   x.domain(d3.extent(data, d => new Date(d.date)));
   y.domain([0, d3.max(data, d =>  d.distance)]);
@@ -39,10 +42,9 @@ const update = (data) => {
   circles.exit().remove();
 
   // update current points
-  circles.attr('r', '5')
+  circles.attr('r', '4')
     .attr('cx', d => x(new Date(d.date)))
-    .attr('cy', d => y(d.distance))
-    .attr('fill', '#ccc');
+    .attr('cy', d => y(d.distance));
 
   // add new points
   circles.enter()
