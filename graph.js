@@ -24,15 +24,34 @@ const xAxisGroup = graph.append('g')
 const yAxisGroup = graph.append('g')
   .attr('class', 'y-axis');
 
+// d3 line path generator
+const line = d3.line()
+  //.curve(d3.curveCardinal)
+  .x(function(d){ return x(new Date(d.date))})
+  .y(function(d){ return y(d.distance)});
+
+// line path element
+const path = graph.append('path');
+
 // update function
 const update = (data) => {
 
   // filter data based on current activity
   data = data.filter(item => item.activity == activity);
 
+  // sort the data based on date objects
+  data.sort((a,b) => new Date(a.date) - new Date(b.date));
+
   // set scale domains
   x.domain(d3.extent(data, d => new Date(d.date)));
   y.domain([0, d3.max(data, d =>  d.distance)]);
+
+  // update path data
+  path.data([data])
+    .attr('fill', 'none')
+    .attr('stroke', '#00bfa5')
+    .attr('stroke-width', '2')
+    .attr('d', line);
 
   // create circles for points
   const circles = graph.selectAll('circle')
@@ -77,7 +96,7 @@ const update = (data) => {
 // data and firestore
 var data = [];
 
-db.collection('activities').orderBy('date').onSnapshot(res => {
+db.collection('activities').onSnapshot(res => {
 
   res.docChanges().forEach(change => {
 
