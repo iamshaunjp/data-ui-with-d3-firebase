@@ -11,6 +11,40 @@
   <title>Ninja Corp!</title>
 </head>
 <body>
+
+    <div class="pink section">
+      <h2 class="white-text center">Ninja Corp</h2>
+    </div>
+    <div class="grey lighten-3 section grey-text" style="position: relative">
+      <p class="flow-text center">The Number ONE Ninja Company</p>
+      <a class="btn-floating btn-large halfway-fab pink modal-trigger" href="#modal">
+        <i class="material-icons">add</i>
+      </a>
+    </div>
+    
+    <div id="modal" class="modal">
+      <div class="modal-content">
+        <h4 class="pink-text center">Add a New Employee</h4>
+        <form>
+          <div class="input-field">
+            <input type="text" id="name" placeholder="Employee name" />
+          </div>
+          <div class="input-field">
+            <input type="text" id="parent" placeholder="Reports to..." />
+          </div>
+          <div class="input-field">
+            <input type="text" id="department" placeholder="Department" />
+          </div>
+          <div class="input-field center">
+            <button class="btn pink white-text">Add Employee</button>
+          </div>
+        </form>
+      </div>
+    </div>
+    
+    <div class="container">
+      <div class="canvas"></div>
+    </div>
   
   <!-- scripts -->
   <script src="https://www.gstatic.com/firebasejs/5.4.1/firebase-app.js"></script>
