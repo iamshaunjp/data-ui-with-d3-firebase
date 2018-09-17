@@ -3,18 +3,36 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <title>Data Hierarchy</title>
-  <style>
-    text{
-      font-family: Arial;
-    }
-  </style>
+  <!--Import Google Icon Font-->
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  <!-- Compiled and minified CSS -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-rc.2/css/materialize.min.css">
+  <link rel="stylesheet" href="styles.css">
+  <title>Ninja Corp!</title>
 </head>
 <body>
-
-  <div class="canvas"></div>
-
+  
+  <!-- scripts -->
+  <script src="https://www.gstatic.com/firebasejs/5.4.1/firebase-app.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/5.4.1/firebase-firestore.js"></script>
+  <script>
+    // Initialize Firebase
+    var config = {
+      apiKey: "AIzaSyBimZS4KHtAzEICqMyph25tUEpKA2lJ1e0",
+      authDomain: "d3-testing-nn.firebaseapp.com",
+      databaseURL: "https://d3-testing-nn.firebaseio.com",
+      projectId: "d3-testing-nn",
+      storageBucket: "d3-testing-nn.appspot.com",
+      messagingSenderId: "450687416936"
+    };
+    firebase.initializeApp(config);
+    const db = firebase.firestore();
+    const settings = {timestampsInSnapshots: true};
+    db.settings(settings);
+  </script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-rc.2/js/materialize.min.js"></script>
   <script src="https://d3js.org/d3.v5.js"></script>
   <script src="index.js"></script>
+  <script src="graph.js"></script>
 </body>
 </html>
