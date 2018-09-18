@@ -60,12 +60,15 @@ const update = (data) => {
     .attr('stroke', '#555')
     .attr('stroke-width', 2)
     .attr('width', d => d.data.name.length * 20)
-    .attr('height', 50);
+    .attr('height', 50)
+    .attr('transform', (d,i,n) => {
+      let x = (d.data.name.length * 10);
+      return `translate(${-x}, -25)`
+    });
 
   enterNodes.append('text')
     .attr('text-anchor', 'middle')
-    .attr('dy', 30)
-    .attr('dx', d => d.data.name.length * 10)
+    .attr('dy', 5)
     .attr('fill', 'white')
     .text(d => d.data.name); 
 
