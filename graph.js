@@ -19,6 +19,9 @@ const tree = d3.tree()
 // update function  
 const update = (data) => {
 
+  // remove current nodes
+  graph.selectAll('.node').remove();
+
   // get updated root Node data
   const rootNode = stratify(data);
   const treeData = tree(rootNode).descendants();
