@@ -46,7 +46,6 @@ const update = (data) => {
 
   enterNodes.append('text')
     .attr('text-anchor', 'middle')
-    .attr('dx', d => d.data.name.length * 10)
     .attr('fill', 'white')
     .text(d => d.data.name); 
 
