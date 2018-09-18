@@ -1,4 +1,4 @@
-const dims = { height: 500, width: 1400 };
+const dims = { height: 500, width: 1100 };
 
 const svg = d3.select('.canvas')
   .append('svg')
@@ -9,26 +9,44 @@ const graph = svg.append('g')
   .attr('transform', 'translate(50, 50)');
 
 // tree and stratify
-const tree = d3.tree()
-  .size([dims.width, dims.height]);
-
 const stratify = d3.stratify()
   .id(d => d.name)
   .parentId(d => d.parent);
+
+const tree = d3.tree()
+  .size([dims.width, dims.height]);
 
 // update function  
 const update = (data) => {
 
   // get updated root Node data
   const rootNode = stratify(data);
-  //const treeData = tree(rootNode);
+  const treeData = tree(rootNode).descendants();
   
-  console.log(rootNode);
-  //console.log(treeData);
-  
-  // get nodes selection and join new data
-  // const nodes = graph.selectAll('.node')
-  //   .data(tree(rootNode).descendants());
+  // get nodes selection and join data
+  const nodes = graph.selectAll('.node')
+    .data(treeData);
+
+  // create enter node groups
+  const enterNodes = nodes.enter()
+    .append('g')
+      .attr('class', 'node')
+      .attr('transform', d => `translate(${d.x}, ${d.y})`);
+      
+  // append rects to enter nodes
+  enterNodes.append('rect')
+    .attr('fill', '#aaa')
+    .attr('stroke', '#555')
+    .attr('stroke-width', 2)
+    .attr('width', d => d.data.name.length * 20)
+    .attr('height', 50);
+
+  enterNodes.append('text')
+    .attr('text-anchor', 'middle')
+    .attr('dy', 30)
+    .attr('dx', d => d.data.name.length * 10)
+    .attr('fill', 'white')
+    .text(d => d.data.name); 
 
 };
 
