@@ -16,12 +16,16 @@ const stratify = d3.stratify()
 const tree = d3.tree()
   .size([dims.width, dims.height]);
 
+// create ordinal scale
+
 // update function  
 const update = (data) => {
 
   // remove current nodes
   graph.selectAll('.node').remove();
   graph.selectAll('.link').remove();
+
+  // update ordinal scale domain
 
   // get updated root Node data
   const rootNode = stratify(data);
@@ -56,6 +60,7 @@ const update = (data) => {
       
   // append rects to enter nodes
   enterNodes.append('rect')
+    // apply the ordinal scale for fill
     .attr('fill', '#aaa')
     .attr('stroke', '#555')
     .attr('stroke-width', 2)
