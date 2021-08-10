@@ -120,6 +120,8 @@ const update = (data) => {
       // hide the dotted line group (opacity)
       dottedLines.style('opacity', 0)
     });
+  // add handleClick
+  .on('click', handleClick);
 
   // create axes
   const xAxis = d3.axisBottom(x)
@@ -170,3 +172,10 @@ db.collection('activities').onSnapshot(res => {
   update(data);
 
 });
+
+// add handleClick
+const handleClick = (d) => {
+  console.log(d)
+  const id = d.id;
+  db.collection('activities').doc(id).delete();
+};
